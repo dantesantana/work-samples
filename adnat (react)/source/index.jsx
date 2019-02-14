@@ -1,17 +1,29 @@
-import React 	from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 
-const myReactElement = React.createElement(
-	'button',		// this element we want to create
-	{
-		onClick: function handleClick(){
-			alert('Thanks!')
+import Login from './Views/Login'
+import Signup from './Views/Signup'
+
+class App extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = { currentPage: 'LOGIN' }
+	}
+	render() {
+		switch (this.state.currentPage) {
+			case 'LOGIN':
+				return (<Login />);
+			case 'SIGNUP':
+				return(<Signup />);			
+			
 		}
-	},				// the properties we want to add to the element
-	'Click Me!'		// a child element
-);
-const element = <h1>Hello, world</h1>;
+	}
+}
+
 ReactDOM.render(
-	element,					// what react element we want to render
-	document.getElementById('App')	// where we want to render on the page
-);
+	<div>
+		<App />
+		<button>Login</button>
+		<button>Signup</button>
+	</div>
+	, document.getElementById('App'));
