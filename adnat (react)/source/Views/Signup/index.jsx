@@ -3,10 +3,10 @@ import React 	from 'react';
 export default function Signup() {
 	return (
 		<div>
-			Adnat React Signup
+			<h1>Adnat Signup</h1>
 			<input type="text" placeholder="Email..."></input>
 			<input type="text" placeholder="Password..."></input>
-			<input type="text" placeholder="Re-Enter Password..."></input>
+			<input type="text" placeholder="Confirm Password..."></input>
 		</div>
 		)
 }
