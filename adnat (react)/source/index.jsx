@@ -7,23 +7,41 @@ import Signup from './Views/Signup'
 class App extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { currentPage: 'LOGIN' }
+		this.state = { currentPage: 'LOGIN' };
+		//this binding makes 'this' work in the callback
+		this.signupPageClick = this.signupPageClick.bind(this);
+		this.loginPageClick = this.loginPageClick.bind(this);
 	}
+
+	//change the state of current page for the purposes of the switch statement in render()
+	signupPageClick() {
+		this.setState(state => ({ currentPage: 'SIGNUP' }));
+	}
+
+	loginPageClick() {
+		this.setState(state => ({ currentPage: 'LOGIN' }));
+	}
+
 	render() {
 		switch (this.state.currentPage) {
 			case 'LOGIN':
-				return (<Login />);
+				return (
+					<div>
+						<Login />
+						<button>Login</button>
+						<button onClick={this.signupPageClick}>SignUp Page</button>
+					</div>
+				);
 			case 'SIGNUP':
-				return(<Signup />);			
-			
+				return (
+					<div>
+						<Signup />
+						<button>SignUp</button>
+						<button onClick={this.loginPageClick}>Back to Login Page</button>
+					</div>
+				);
 		}
 	}
 }
 
-ReactDOM.render(
-	<div>
-		<App />
-		<button>Login</button>
-		<button>Signup</button>
-	</div>
-	, document.getElementById('App'));
+ReactDOM.render(<App />, document.getElementById('App'));
